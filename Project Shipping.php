@@ -10,43 +10,41 @@
 <body>
     <div class="container">
         <center>
-            <h2>Shipping Project</h2>
+            <h2>Shipping</h2>
         </center>
-        <a href="pengiriman.php" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Pengiriman Barang</a>
+        <a href="create.php" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Pengiriman</a>
+        <a href="cek_status_barang.php" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Cek Status Barang</a>
         <table class="table table-hover-dark">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">ID Barang</th>
+                     <th scope="col">No.</th>
+                    <th scope="col">ID_karyawan</th>
                     <th scope="col">Nama</th>
-                    <th scope="col">Harga</th>
-                    <th scope="col">Stok</th>
-                    <th scope="col">Jenis</th>
+                    <th scope="col">No HP</th>
                     <th scope="col">Action</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <?php
                 require 'connection.php';
-                $hasil = mysqli_query($conn, "SELECT * FROM tbl_barang")
+                $hasil = mysqli_query($conn, "SELECT * FROM admin_karyawan")
                 ?>
                 <?php
                 $no = 1;
                 while ($data = mysqli_fetch_array($hasil)) {
                     echo "<tr>";
                     echo "<th>" . $no . "</th>";
-                    echo "<td>" . $data['id_barang'] . "</td>";
+                    echo "<td>" . $data['id_karyawan'] . "</td>";
                     echo "<td>" . $data['nama'] . "</td>";
-                    echo "<td>" . $data['harga'] . "</td>";
-                    echo "<td>" . $data['stok'] . "</td>";
-                    echo "<td>" . $data['jenis'] . "</td>";
+                    echo "<td>" . $data['NO_HP'] . "</td>";
                     echo "<td>
-            <a href='edit_barang.php?id_barang=$data[id_barang]' class='btn btn-warning btn-sm' style='font-weight: 600;'>Edit</a>|
-            <a href='delete_barang.php?id_barang=$data[id_barang] ' class='btn btn-danger btn-sm' style='font-weight: 600;'>Delete</a>
+            <a href='update.php?id_karyawan=$data[id_karyawan]' class='btn btn-warning btn-sm' style='font-weight: 600;'>Edit</a>|
+            <a href='delete.php?id_karyawan=$data[id_karyawan]' class='btn btn-danger btn-sm' style='font-weight: 600;'>Delete</a>
             </td>";
                     echo "</tr>";
                     $no++;
-                }
+                } 
                 ?>
             </tbody>
         </table>
