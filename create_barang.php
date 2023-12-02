@@ -1,75 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <title>Praktikum Antar Muka</title>
+    <title>Praktikum-Antar Muka Pengguna</title>
+
+    <!-- Memuat file CSS Bootstrap secara luring -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
-
 <body>
-  <div class="container">
-    <center>
-      <h3>Masukkan Data Barang</h3>
-      <form action="create_barang.php" method="post" name="form1">
-        <table width="50%" border="0">
-          <tr>
-            <td>Id Pengiriman</td>
-            <td><input type="text" name="id_pengiriman"></td>
-          </tr>
-          <tr>
-            <td>Nama Barang</td>
-            <td><input type="text" name="nama_barang"></td>
-          </tr>
-          <tr>
-            <td>Jenis </td>
-            <td><input type="number" name="jenis_barang"></td>
-          </tr>
-          <tr>
-            <td>Berat</td>
-            <td><input type="number" name="berat_barang"></td>
-          </tr>
-          <tr>
-            <td>Biaya Pengiriman</td>
-            <td><input type="number" name="harga_barang"></td>
-          </tr>
-          <td></td>
-          <td><input class="btn btn-success" type="submit" name="Submit" value="Tambah Data"></td>
-          </tr>
-        </table>
-      </form>
-
-      <?php
-
-      // Check If form submitted, insert form data into users table.
-      if (isset($_POST['Submit'])) {
-        $id_barang = $_POST['id_barang'];
-        $nama = $_POST['nama'];
-        $harga = $_POST['harga'];
-        $stok = $_POST['stok'];
-        $jenis = $_POST['jenis'];
-
-
-
-        // include database connection file
-        require 'connection.php';
-
-        // Insert user data into table
-        $result = mysqli_query($conn, "INSERT INTO tbl_barang(id_barang, nama, harga, stok, jenis) VALUES('$id_barang', '$nama', '$harga', '$stok', '$jenis')");
-
-        // Show message when user added
-        echo "Data berhasil ditambahkan  <a class='btn btn-primary' href='index.php'>Lihat Data</a>";
-      }
-      ?>
-      <br>
-      <a href="index.php" class="btn btn-primary btn-lg " tabindex="-1" role="button" aria-disabled="true">Kembali</a>
-
-    </center>
-
-  </div>
-
+    <div>
+        <center><h2>Form Pengiriman</h2></center>
+        <br>
+        <div class="row justify-content-md-center">
+            <div class="col-6">
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>" >
+                <div class="form-group">
+                    <label for="id_barang">ID Barang</label>
+                    <input type="text" class="form-control" name="id_barang" id="id_barang" placeholder="ex: brg001">
+                </div>
+                <div class="form-group">
+                    <label for="nama_barang">Nama Barang</label>
+                    <input type="text" class="form-control" name="nama_barang" id="nama_barang" placeholder="ex: Baju">
+                </div>
+                <div class="form-group">
+                    <label for="jenis_barang">Jenis Barang</label>
+                    <input type="text" class="form-control" name="jenis_barang" id="jenis_barang" placeholder="ex: Pakaian">
+                </div>
+                <div class="form-group">
+                    <label for="berat_barang">Berat Barang</label>
+                    <input type="text" class="form-control" name="berat_barang" id="berat_barang" placeholder="ex: 0.2">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormRadioButton">Paket Pengiriman</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Jasa Pengiriman" id="pengiriman1" value="1">
+                        <label class="form-check-label" for="exampleRadios1">
+                            Reguler
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Jasa Pengiriman" id="pengiriman2" value="2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Express
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Jumlah</label>
+                    <select class="form-control" name="Jumlah">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary mb-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>
+
+<?php
+    require 'connection.php';
+
+    if(isset($_POST['submit'])) {
+        $id_pengiriman = $_POST["id_pengiriman"];
+        $nama_barang = $_POST["nama_barang"];
+        $jenis_barang = $_POST["jenis_barang"];
+        $berat_barang = $_POST["berat_barang"];
+        $paket_pengiriman = $_POST["paket_pengiriman"];
+
+        $query = "INSERT INTO pengiriman (id_barang, nama_barang, jenis_barang, berat_barang, paket_pengiriman) VALUES ('$id_barang', '$nama_barang', '$jenis_barang', '$berat_barang', '$paket_pengiriman')";
+        $hasil = mysqli_query($conn, $query);
+        
+        if($hasil){
+            header("Location: index.php");
+        } else{
+            echo "Data Gagal Ditambahkan";
+        }
+    }
+?>
