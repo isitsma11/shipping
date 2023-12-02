@@ -45,8 +45,8 @@
                     echo "<td>" . $data['berat_barang'] . "</td>";
                     echo "<td>" . $data['harga_barang'] . "</td>";
                     echo "<td>
-            <a href='edit_barang.php?id_barang=$data[id_barang]' class='btn btn-warning btn-sm' style='font-weight: 600;'>Edit</a>|
-            <a href='delete_barang.php?id_barang=$data[id_barang] ' class='btn btn-danger btn-sm' style='font-weight: 600;'>Delete</a>
+            <a href='update.php?id_karyawan=$data[id_karyawan]' class='btn btn-warning btn-sm' style='font-weight: 600;'>Edit</a>|
+            <a href='delete.php?id_karyawan=$data[id_karyawan] ' class='btn btn-danger btn-sm' style='font-weight: 600;'>Delete</a>
             </td>";
                     echo "</tr>";
                     $no++;
