@@ -10,14 +10,14 @@
 <body>
     <div class="container">
         <center>
-            <h2>Shipping</h2>
+            <h2>Admin Shipping</h2>
         </center>
-        <a href="create.php" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Pengiriman</a>
+        <a href="pengiriman.php" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Pengiriman</a>
         <a href="cek_status_barang.php" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Cek Status Barang</a>
         <table class="table table-hover-dark">
             <thead class="thead-dark">
                 <tr>
-                     <th scope="col">No.</th>
+                    <th scope="col">No.</th>
                     <th scope="col">ID_karyawan</th>
                     <th scope="col">Nama</th>
                     <th scope="col">No HP</th>
@@ -47,6 +47,124 @@
                 } 
                 ?>
             </tbody>
+            <?php
+            
+                require 'connection.php';
+                $hasil = mysqli_query($conn, "SELECT * FROM kurir")
+                ?>
+                <table class="table table-hover-dark">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">ID_kurir</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">No HP</th>
+                    <th scope="col">Action</th>
+                    
+                </tr>
+
+
+                <?php
+                $no = 1;
+                while ($data = mysqli_fetch_array($hasil)) {
+                    echo "<tr>";
+                    echo "<th>" . $no . "</th>";
+                    echo "<td>" . $data['id_kurir'] . "</td>";
+                    echo "<td>" . $data['nama'] . "</td>";
+                    echo "<td>" . $data['NO_HP'] . "</td>";
+                    echo "<td>
+            </td>";
+                    echo "</tr>";
+                    $no++;
+                } 
+                ?>
+            </tbody>
+            <div class="container">
+        <center>
+            <h2>Daftar Kurir</h2>
+        </center>
+        </table>
+
+        </tbody>
+            <?php
+            
+                require 'connection.php';
+                $hasil = mysqli_query($conn, "SELECT * FROM penerima")
+                ?>
+                <table class="table table-hover-dark">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">id_penerima</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Alamat</th>
+                    <th scope="col">No HP</th>
+                    <th scope="col">Action</th>
+                    
+                </tr>
+
+
+                <?php
+                $no = 1;
+                while ($data = mysqli_fetch_array($hasil)) {
+                    echo "<tr>";
+                    echo "<th>" . $no . "</th>";
+                    echo "<td>" . $data['id_penerima'] . "</td>";
+                    echo "<td>" . $data['nama'] . "</td>";
+                    echo "<td>" . $data['alamat'] . "</td>";
+                    echo "<td>" . $data['NO_HP'] . "</td>";
+                    echo "<td>
+            </td>";
+                    echo "</tr>";
+                    $no++;
+                } 
+                ?>
+            </tbody>
+    </div>
+    <div class="container">
+        <center>
+            <h2>Daftar Penerima</h2>
+        </center>
+        </table>
+    </div>
+    </tbody>
+            <?php
+            
+                require 'connection.php';
+                $hasil = mysqli_query($conn, "SELECT * FROM pengirim")
+                ?>
+                <table class="table table-hover-dark">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">id_pengirim</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">No HP</th>
+                    <th scope="col">Action</th>
+                    
+                </tr>
+
+
+                <?php
+                $no = 1;
+                while ($data = mysqli_fetch_array($hasil)) {
+                    echo "<tr>";
+                    echo "<th>" . $no . "</th>";
+                    echo "<td>" . $data['id_pengirim'] . "</td>";
+                    echo "<td>" . $data['nama'] . "</td>";
+                    echo "<td>" . $data['NO_HP'] . "</td>";
+                    echo "<td>
+            </td>";
+                    echo "</tr>";
+                    $no++;
+                } 
+                ?>
+            </tbody>
+            
+    <div class="container">
+        <center>
+            <h2>Daftar Pengirim</h2>
+        </center>
         </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
