@@ -65,13 +65,13 @@
     require 'connection.php';
 
     if(isset($_POST['submit'])) {
-        $id_pengiriman = $_POST["id_pengiriman"];
+        $id_barang = $_POST["id_pengiriman"];
         $nama_barang = $_POST["nama_barang"];
         $jenis_barang = $_POST["jenis_barang"];
         $berat_barang = $_POST["berat_barang"];
         $paket_pengiriman = $_POST["paket_pengiriman"];
 
-        $query = "INSERT INTO pengiriman (id_barang, nama_barang, jenis_barang, berat_barang, paket_pengiriman) VALUES ('$id_barang', '$nama_barang', '$jenis_barang', '$berat_barang', '$paket_pengiriman')";
+        $query = "INSERT INTO pengiriman (id_pengiriman, nama_barang, jenis_barang, berat_barang, paket_pengiriman) VALUES ('$id_pengiriman', '$nama_barang', '$jenis_barang', '$berat_barang', '$paket_pengiriman')";
         $hasil = mysqli_query($conn, $query);
         
         if($hasil){
